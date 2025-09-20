@@ -39,9 +39,9 @@ gunzip -c data/shapefiles.tar.gz | tar -xf - -C data
 - Optional: To dramatically speed up the process, download preprocessed inputs from doi:10.5281/zenodo.17166386. If using preprocessed inputs, skip step 3-Main analysis (data processing script)
 
 ### 2. Set up the environment
-Easy way to install the required packages is with pip, but feel free to proceed with conda or however you'd like:
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt  
+conda install -c conda-forge esmpy
 ```
 
 ### 3. Run the analysis
