@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import sys
 
+
 def fliplon(ds):
     """
     flip lon from 0-360 to -180-180
@@ -15,7 +16,7 @@ def fliplon(ds):
     else:
         lon = "longitude"
         lat = "latitude"
-        
+
     # make sure lon/lat indices are formatted in order for slicing (ndvi lat is backwards)
     ds = ds.sortby(["time", lat, lon])
 
@@ -110,7 +111,7 @@ def process_malaria_data(
 
     # get malawi case and demographic info
     # initialize nan arrays and then populate cases/pop with the data
-    num_years = year_end - year_start + 1  
+    num_years = year_end - year_start + 1
     yr = np.arange(year_start, year_end + 1, 1 / 12)
 
     # create datetime object based on calmonth/calyear columns. note: using day=15 for all months as a dummy day

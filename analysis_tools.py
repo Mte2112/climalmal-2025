@@ -7,6 +7,7 @@ import rasterio
 from shapely.geometry import mapping
 from sklearn.linear_model import LinearRegression
 
+
 # modify filter parameters based on period input
 def calculate_cutoff(per, fs):
     return 1 / per * fs
@@ -227,39 +228,42 @@ def regmap_ts_simple_fast(predictand, predictor):
 
     return regmap
 
+
 def apply_filter_xr(da, per, fs, cutoff, order):
-    '''apply LPF to xarray data array'''
-    
+    """apply LPF to xarray data array"""
+
     # apply low-pass filter to SST data
-    padded_data = pad_xr(da) # pad data to manage tails 
-    
+    padded_data = pad_xr(da)  # pad data to manage tails
+
     # apply the filter to each grid cell. this may take a couple minutes
     filtered_data = xr.apply_ufunc(
         butter_filter,
         padded_data,
-        input_core_dims=[['time']],  # filter along time
-        output_core_dims=[['time']],
+        input_core_dims=[["time"]],  # filter along time
+        output_core_dims=[["time"]],
         vectorize=True,
-        dask='allowed', 
-        kwargs={'cutoff': cutoff, 'fs': fs, 'order': order}
+        dask="allowed",
+        kwargs={"cutoff": cutoff, "fs": fs, "order": order},
     )
-    # drop padded data 
-    ns = da.sizes['time'] // 2  # number of samples padded
-    filtered_data = filtered_data.isel(time=slice(ns, ns + da.sizes['time'])) 
+    # drop padded data
+    ns = da.sizes["time"] // 2  # number of samples padded
+    filtered_data = filtered_data.isel(time=slice(ns, ns + da.sizes["time"]))
 
     return filtered_data
 
 
 # get district correlations
 def get_dist_corr(clim_da, var, dist_shape, mal):
-    '''get correlation of district malaria climate variable within that district'''
-    
+    """get correlation of district malaria climate variable within that district"""
+
     corrs = []
     for dnum in dist_shape["DISTRICT"].unique():
         district = dist_shape[dist_shape["DISTRICT"] == dnum]
         # use the malawi shapefile to mask the dataset, buffering the boundaries by about 10 km to capture overlapping grid cells on boundaries
-        dist_buffered = gpd.GeoDataFrame(geometry=district.buffer(0.1)).to_crs("EPSG:4326")
-    
+        dist_buffered = gpd.GeoDataFrame(geometry=district.buffer(0.1)).to_crs(
+            "EPSG:4326"
+        )
+
         # clip climate var within district boundaries
         if "lon" in clim_da.dims:
             lon = "lon"
@@ -269,24 +273,26 @@ def get_dist_corr(clim_da, var, dist_shape, mal):
             lat = "latitude"
         clim_da.rio.set_spatial_dims(x_dim=lon, y_dim=lat, inplace=True)
         clim_da.rio.write_crs("EPSG:4326", inplace=True)
-        clim_da_dist = clim_da.rio.clip(dist_buffered.geometry.apply(mapping), dist_buffered.crs, drop=True)
-    
-        # smooth clim_da 
+        clim_da_dist = clim_da.rio.clip(
+            dist_buffered.geometry.apply(mapping), dist_buffered.crs, drop=True
+        )
+
+        # smooth clim_da
         clim_da_dist_mean = area_weighted_mean(clim_da_dist[var], (-90, 90), (0, 360))
-        clim_da_dist_mean_smooth = smooth_da_ts(clim_da_dist_mean, var, per=(3*12))
-    
+        clim_da_dist_mean_smooth = smooth_da_ts(clim_da_dist_mean, var, per=(3 * 12))
+
         # smooth cases in district
         dist_cases = mal[mal["DISTRICT"] == dnum].groupby("DATETIME")["CASES"].sum()
         da_cases_dist = xr.DataArray(dist_cases.values)
         cases_dist_ds = xr.Dataset(
-                data_vars={"cases": (["time"], da_cases_dist.values)},
-                coords={"time": dist_cases.index.values}
-            )
-        
-        da_cases_dist_smooth = smooth_da_ts(cases_dist_ds.cases, "cases", per=(2*12))
+            data_vars={"cases": (["time"], da_cases_dist.values)},
+            coords={"time": dist_cases.index.values},
+        )
+
+        da_cases_dist_smooth = smooth_da_ts(cases_dist_ds.cases, "cases", per=(2 * 12))
         da_cases_dist_smooth["time"] = clim_da_dist_mean_smooth.time
-    
-        # get correlation between district cases and average clim_da 
+
+        # get correlation between district cases and average clim_da
         corr = xr.corr(da_cases_dist_smooth.cases, clim_da_dist_mean_smooth[var])
         corrs.append(corr.values.item())
 
