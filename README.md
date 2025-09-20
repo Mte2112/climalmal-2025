@@ -50,15 +50,9 @@ pip install -r requirements.txt
 ```bash
 python analysis_main.py
 ```
-Inludes all aspects of core analysis. Saves preprocessed output for easy import & plotting in figures.ipynb. Does not include CMIP6 analysis from Figure 7 in manuscript. 
+Inludes all aspects of core analysis. Saves preprocessed output for easy import & plotting in figures.ipynb. Does not include CMIP6 analysis from Figure 7 in manuscript.   
 
-#### CMIP6 projections 
-```bash
-python analysis_cmip6.py
-```
-Leveraging Pangeo CMIP6 archive for efficient, reproducible analysis. Completely different pipeline from the main analysis, so kept separate.  
-
-### Public data inputs for step 3
+### Public data inputs (if running main analysis)
 - [Malaria incidence](10.5281/zenodo.17161438) (district-level, monthly)
 - [SST](https://climatedataguide.ucar.edu/climate-data/sst-data-noaa-optimal-interpolation-oi-sst-analysis-version-2-oisstv2-1x1) (NOAA OI SST)
 - [ERA5 reanalysis](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview) (300/850 mb wind, 300/850 mb geopotential, 2m temperature, vimfd)
@@ -66,6 +60,11 @@ Leveraging Pangeo CMIP6 archive for efficient, reproducible analysis. Completely
 - [GRACE-DA-DM soil moisture](https://disc.gsfc.nasa.gov/datasets/GRACEDADM_CLSM025GL_7D_3.0/summary?keywords=grace%20soil%20moisture) 
 - [Elevation](https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/tiled/) (ETOPO1)
 - Malawi national and district shapefiles (in repo)
+
+#### CMIP6 projections 
+`analysis_cmip6.ipynb`  
+
+CMIP6 analysis via Pangeo for efficient, reproducible analysis. Completely different pipeline from the main analysis, so kept separate.  
 
 ### 4. Create figures seen in manuscript
 `figures.ipynb` 
