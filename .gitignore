@@ -3,4 +3,4 @@
 *.nc
 *Zone.Identifier*
 data/shapefiles/
-
+.DS_Store
