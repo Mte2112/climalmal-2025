@@ -36,7 +36,7 @@ git clone https://github.com/Mte2112/climalmal-2025
 ```bash
 gunzip -c data/shapefiles.tar.gz | tar -xf - -C data
 ```  
-- Optional: To dramatically speed up the process, download preprocessed inputs from doi:10.5281/zenodo.17166386. If using preprocessed inputs, skip step 3-Main analysis (data processing script)
+- Optional: To dramatically speed up the process, [download preprocessed inputs](https://zenodo.org/records/17166386) from Zenodo. If using preprocessed inputs, skip step 3-Main analysis (data processing script)
 
 ### 2. Set up the environment
 ```bash
@@ -53,7 +53,7 @@ python analysis_main.py
 Inludes all aspects of core analysis. Saves preprocessed output for easy import & plotting in figures.ipynb. Does not include CMIP6 analysis from Figure 7 in manuscript.   
 
 ### Public data inputs (if running main analysis)
-- [Malaria incidence](10.5281/zenodo.17161438) (district-level, monthly)
+- [Malaria incidence](https://zenodo.org/records/17161438) (district-level, monthly)
 - [SST](https://climatedataguide.ucar.edu/climate-data/sst-data-noaa-optimal-interpolation-oi-sst-analysis-version-2-oisstv2-1x1) (NOAA OI SST)
 - [ERA5 reanalysis](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview) (300/850 mb wind, 300/850 mb geopotential, 2m temperature, vimfd)
 - [CHIRPS precipitation](https://www.chc.ucsb.edu/data/chirps)    
