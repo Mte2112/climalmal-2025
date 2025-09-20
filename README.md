@@ -1,7 +1,6 @@
 ## Project Description
 
 This repo contains the scripts needed to reproduce the results in Elling et al., 2025 *Tropical oceans drive Malawi’s malaria risk*   
-Code formatted with [Black](https://pypi.org/project/black/)
 
 ## Directory structure
 
@@ -20,6 +19,7 @@ Code formatted with [Black](https://pypi.org/project/black/)
     └── manuscript/                    # output figures, manuscript
     └── supp/                          # output figures, supplementary
 ```
+Code formatted with [Black](https://pypi.org/project/black/)  
 
 ## How to run  
 Clone the repository  
