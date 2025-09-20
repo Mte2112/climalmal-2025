@@ -63,7 +63,7 @@ def load_data(data_dir=data_dir):
                     data[name] = pickle.load(f)
                     
         except Exception as e:
-            print(f"couldn't load {file}: {e}")
+            print(f"couldn't load {file}: {e}\npls check file names")
     
-    print(f"loaded {len(data)} datasets. pls check file names")
+    print(f"loaded {len(data)} datasets")
     return data
