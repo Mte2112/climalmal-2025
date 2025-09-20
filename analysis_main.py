@@ -13,7 +13,7 @@ See README for information
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #
 
 # malaria data - see Zenodo
-MALARIA_DATA_PATH = "../../data/processed/health/combined/TotalMalariaCases2005-2023_Corrected2013-2014.csv"
+MALARIA_DATA_PATH = ""
 
 # shapefiles - provided in data/shapefiles. Unzip if compressed
 MALAWI_SHAPE_PATH = "data/shapefiles/mwi_admbnda_adm0_nso_hotosm_20230405.shp"
@@ -21,22 +21,22 @@ DISTRICT_SHAPE_PATH = "data/shapefiles/maldists/MWI_adm1.shp"
 LAKE_MALAWI_PATH = "data/shapefiles/lake_malawi.shp"
 
 # topography - publically available https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/tiled/
-ETOPO_PATH = "../../data/raw/climate_data/topo/ETOPO1_Ice_g_gmt4.grd.nc"
+ETOPO_PATH = ""
 
 # climate data paths - see link 4 public download
-SST_PATH = "../../data/raw/climate_data/sst/oiv2_2005-2023.nc"  # https://climatedataguide.ucar.edu/climate-data/sst-data-noaa-optimal-interpolation-oi-sst-analysis-version-2-oisstv2-1x1
+SST_PATH = ""  # https://climatedataguide.ucar.edu/climate-data/sst-data-noaa-optimal-interpolation-oi-sst-analysis-version-2-oisstv2-1x1
 # era5 data https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview
-WIND_PATH = "../../data/raw/climate_data/era5/era5_pressure2_*.nc"
-GEOP_300_PATH = "../../data/raw/climate_data/era5/era5_geop_300mb_2004-2025.grib"
-GEOP_850_PATH = "../../data/raw/climate_data/era5/era5_geop_850mb_2004-2024.grib"
+WIND_PATH = ""
+GEOP_300_PATH = ""
+GEOP_850_PATH = ""
 VIMFD_PATH = (
-    "../../data/raw/climate_data/era5/vert_integr_moist_div_mon_era5_2004-2024.grib"
+    ""
 )
-TEMP_PATH = "../../data/raw/climate_data/era5/era5_temp2m_mon_2004-2024.grib"
-PRECIP_PATH = "../../data/raw/climate_data/chirps/allyears/chirps-v2.0.monthly.nc"  # https://www.chc.ucsb.edu/data/chirps
-GRACE_PATH = "../../data/raw/climate_data/grace/GRACEDADM_*.nc4"  # https://disc.gsfc.nasa.gov/datasets/GRACEDADM_CLSM025GL_7D_3.0/summary?keywords=grace%20soil%20moisture
-GRACE_MALAWI_PATH = "../../data/processed/climate/grace/soil_moisture_grace_malawi_2004-2024.nc"  # preprocessed from dataset above. Malawi clipped. see analysis_tools.py function clip()
-SOIL_TEXTURE_PATH = "../../data/aim2/soil_type/raw/GLDASp5_soiltexture_025d.nc4"  # supplementary https://ldas.gsfc.nasa.gov/gldas/soils
+TEMP_PATH = ""
+PRECIP_PATH = "."  # https://www.chc.ucsb.edu/data/chirps
+GRACE_PATH = ""  # https://disc.gsfc.nasa.gov/datasets/GRACEDADM_CLSM025GL_7D_3.0/summary?keywords=grace%20soil%20moisture
+GRACE_MALAWI_PATH = ""  # preprocessed from dataset above. Malawi clipped. see analysis_tools.py function clip()
+SOIL_TEXTURE_PATH = ""  # supplementary https://ldas.gsfc.nasa.gov/gldas/soils
 
 # output preprocessed data to this directory
 OUTPUT_DIR = "preprocessed/"
