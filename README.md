@@ -23,7 +23,11 @@ Code formatted with [Black](https://pypi.org/project/black/)
     └── supp/                          # output figures, supplementary
 ```
 
-## How to run
+## How to run  
+Clone the repository  
+```bash
+git clone https://github.com/Mte2112/climalmal-2025  
+```  
 
 ### 1. Data setup
 - Download public climate datasets. See top of analysis_main.py for information.  
