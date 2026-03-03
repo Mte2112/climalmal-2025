@@ -1,6 +1,6 @@
 ## Project Description
 
-This repo contains the scripts needed to reproduce the results in Elling et al., 2025 *Tropical oceans drive Malawi’s malaria risk*   
+This repo contains the scripts needed to reproduce the results in Elling et al., 2025 *Tropical ocean teleconnections drive climate, soil moisture, and malaria in Malawi*   
 
 ## Directory structure
 
